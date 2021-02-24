@@ -39,7 +39,7 @@ public class BoulderGenMain extends SimpleApplication {
 		flyCam.setZoomSpeed(0);
 
 		viewPort.setBackgroundColor(ColorRGBA.DarkGray);
-		rootNode.attachChild(new NdDebugGrid(assetManager, 5, 5, 50, ColorRGBA.Gray));
+		rootNode.attachChild(new NdDebugGrid(assetManager, 5, 5, 24, ColorRGBA.Gray));
 
 		AxesVisualizer axesVisualizer = new AxesVisualizer(assetManager, 250, 2f);
 		rootNode.addControl(axesVisualizer);
@@ -47,6 +47,11 @@ public class BoulderGenMain extends SimpleApplication {
 
 		cam.setLocation(new Vector3f(64.75458f, 63.593895f, 121.50989f));
 		cam.setRotation(new Quaternion(-0.04558664f, 0.9542753f, -0.20043683f, -0.21703802f));
+
+		stateManager.attach(new StCamera(rootNode));
+
+		stateManager.attach(new StCells(rootNode));
+		stateManager.attach(new StSurface(rootNode));
 
 		stateManager.attach(new StUiSettings(guiNode));
 	}
