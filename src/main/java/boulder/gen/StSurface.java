@@ -13,6 +13,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
+import com.jme3.scene.SceneGraphVisitorAdapter;
 import com.simsilica.mathd.Vec3i;
 
 import jme3.common.material.MtlShowNormals;
@@ -109,6 +110,12 @@ final class StSurface extends BaseAppState {
 	}
 
 	public void useWireframe(boolean wireframe) {
+		scene.depthFirstTraversal(new SceneGraphVisitorAdapter() {
+			@Override
+			public void visit(Geometry geom) {
+				geom.getMaterial().getAdditionalRenderState().setWireframe(wireframe);
+			}
+		});
 	}
 
 }
