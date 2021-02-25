@@ -39,8 +39,10 @@ final class StUiSettings extends BaseAppState {
 	protected void initialize(Application app) {
 		Container content = new Container();
 
-		content.addChild(new ActionButton(new CallMethodAction("change noise settings", this, "showNoiseSettings"))).setInsets(
-				insets);
+		// content.addChild(new ActionButton(new CallMethodAction("change noise settings", this, "showNoiseSettings"))).setInsets(
+		// insets);
+
+		content.addChild(new ActionButton(new AcCall("change noise settings", () -> showNoiseSettings()))).setInsets(insets);
 
 		{
 			PropertyPanel props = new PropertyPanel(BaseStyles.GLASS);
@@ -82,7 +84,7 @@ final class StUiSettings extends BaseAppState {
 		scene.attachChild(rollupPanel);
 	}
 
-	protected void showNoiseSettings() {
+	private void showNoiseSettings() {
 		PropertyPanel props = new PropertyPanel(BaseStyles.GLASS);
 
 		props.addEnumField("Noise type", noiseSettings, "mNoiseType");
@@ -136,6 +138,10 @@ final class StUiSettings extends BaseAppState {
 
 	public SurfaceSettings surfaceSettings() {
 		return surfaceSettings;
+	}
+
+	public NoiseSettings noiseSettings() {
+		return noiseSettings;
 	}
 
 }

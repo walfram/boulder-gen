@@ -53,11 +53,10 @@ final class StCells extends BaseAppState {
 		Mesh wbox = new WireBox(ext, ext, ext);
 
 		Material m = new MtlUnshaded(getApplication().getAssetManager(), ColorRGBA.Yellow);
-
+		
 		for (int cx = -cellsx; cx <= cellsx; cx++) {
 			for (int cy = -cellsy; cy <= cellsy; cy++) {
 				for (int cz = -cellsz; cz <= cellsz; cz++) {
-
 					Vec3i cell = new Vec3i(cx, cy, cz);
 
 					Vector3f translation = cell.toVector3f().mult(surfaceSettings.cellSize).add(ext, ext, ext);
