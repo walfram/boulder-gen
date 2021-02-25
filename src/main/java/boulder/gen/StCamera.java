@@ -41,7 +41,7 @@ final class StCamera extends BaseAppState {
 
 		camera.setZoomSensitivity(10f);
 		
-		camera.setDefaultVerticalRotation(FastMath.QUARTER_PI);
+		camera.setDefaultVerticalRotation(FastMath.DEG_TO_RAD * 15f);
 		camera.setDefaultHorizontalRotation(FastMath.QUARTER_PI);
 	}
 

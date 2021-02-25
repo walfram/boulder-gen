@@ -7,7 +7,6 @@ import com.jme3.scene.Node;
 import com.simsilica.lemur.Action;
 import com.simsilica.lemur.ActionButton;
 import com.simsilica.lemur.Button;
-import com.simsilica.lemur.CallMethodAction;
 import com.simsilica.lemur.Checkbox;
 import com.simsilica.lemur.Container;
 import com.simsilica.lemur.DefaultCheckboxModel;
@@ -20,6 +19,8 @@ import com.simsilica.lemur.props.PropertyPanel;
 import com.simsilica.lemur.style.BaseStyles;
 import com.simsilica.lemur.style.ElementId;
 
+import jme3.common.noise.FastNoiseLite.FractalType;
+import jme3.common.noise.FastNoiseLite.NoiseType;
 import jme3.common.noise.NoiseSettings;
 
 final class StUiSettings extends BaseAppState {
@@ -37,6 +38,10 @@ final class StUiSettings extends BaseAppState {
 
 	@Override
 	protected void initialize(Application app) {
+		noiseSettings.mNoiseType = NoiseType.OpenSimplex2;
+		noiseSettings.mFractalType = FractalType.FBm;
+		noiseSettings.mOctaves = 4;
+
 		Container content = new Container();
 
 		// content.addChild(new ActionButton(new CallMethodAction("change noise settings", this, "showNoiseSettings"))).setInsets(
@@ -60,7 +65,7 @@ final class StUiSettings extends BaseAppState {
 			content.addChild(props).setInsets(insets);
 		}
 
-		content.addChild(new ActionButton(new CallMethodAction("refresh surface", getState(StSurface.class), "refreshSurface")))
+		content.addChild(new ActionButton(new AcCall("refresh surface", () -> getState(StSurface.class).refreshSurface())))
 				.setInsets(insets);
 
 		{
@@ -82,6 +87,8 @@ final class StUiSettings extends BaseAppState {
 		rollupPanel.setLocalTranslation(5, app.getCamera().getHeight() - 5, 0);
 
 		scene.attachChild(rollupPanel);
+
+		getState(StSurface.class).refreshSurface();
 	}
 
 	private void showNoiseSettings() {
