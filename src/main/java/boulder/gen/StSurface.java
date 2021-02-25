@@ -40,7 +40,7 @@ final class StSurface extends BaseAppState {
 		logger.debug("refresh called");
 
 		scene.detachAllChildren();
-		
+
 		NoiseSettings noiseSettings = getState(StUiSettings.class).noiseSettings();
 		SurfaceSettings surfaceSettings = getState(StUiSettings.class).surfaceSettings();
 
@@ -51,7 +51,6 @@ final class StSurface extends BaseAppState {
 
 		float scale = 1f;
 
-		// Material material = new MtlLighting(getApplication().getAssetManager(), ColorRGBA.Gray);
 		Material material = new MtlShowNormals(getApplication().getAssetManager());
 
 		int cellSize = surfaceSettings.cellSize;

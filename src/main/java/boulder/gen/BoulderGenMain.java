@@ -54,5 +54,6 @@ public class BoulderGenMain extends SimpleApplication {
 		stateManager.attach(new StSurface(rootNode));
 
 		stateManager.attach(new StUiSettings(guiNode));
+		stateManager.attach(new StUiExport(guiNode));
 	}
 }
