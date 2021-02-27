@@ -21,8 +21,8 @@ final class StUiExport extends BaseAppState {
 
 		container.addChild(new Label("export as"), 0);
 		
-		container.addChild(new ActionButton(new AcCall("json", () -> getState(StIo.class).exportJson())), 1).setMaxWidth(100f);
-		container.addChild(new ActionButton(new AcCall("j3o", () -> getState(StIo.class).exportJ3o())), 2).setMaxWidth(100f);
+		container.addChild(new ActionButton(new AcCall("json", () -> getState(StExport.class).exportJson())), 1).setMaxWidth(100f);
+		container.addChild(new ActionButton(new AcCall("j3o", () -> getState(StExport.class).exportJ3o())), 2).setMaxWidth(100f);
 
 		scene.attachChild(container);
 

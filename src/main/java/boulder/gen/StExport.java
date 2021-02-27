@@ -1,6 +1,7 @@
 package boulder.gen;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 
 import javax.swing.JFileChooser;
@@ -16,9 +17,9 @@ import com.jme3.app.state.BaseAppState;
 
 import jme3.common.noise.NoiseSettings;
 
-final class StIo extends BaseAppState {
+final class StExport extends BaseAppState {
 
-	private static final Logger logger = LoggerFactory.getLogger(StIo.class);
+	private static final Logger logger = LoggerFactory.getLogger(StExport.class);
 
 	@Override
 	protected void initialize(Application app) {
@@ -63,14 +64,27 @@ final class StIo extends BaseAppState {
 			ObjectMapper mapper = new ObjectMapper();
 
 			ObjectNode noiseJson = mapper.createObjectNode();
-			
+			noiseSettings.toJson(noiseJson);
+
+			ObjectNode surfaceJson = mapper.createObjectNode();
+			surfaceSettings.toJson(surfaceJson);
+
 			ObjectNode root = mapper.createObjectNode();
+			root.set("noise", noiseJson);
+			root.set("surface", surfaceJson);
+
+			try {
+				mapper.writeValue(f, root);
+			} catch (IOException e) {
+				// FIXME replace with error log message and some popup
+				throw new RuntimeException(e);
+			}
 		});
 	}
 
 	public void exportJ3o() {
 		fileChooser(FileType.J3O).ifPresent((File f) -> {
-
+			
 		});
 	}
 
