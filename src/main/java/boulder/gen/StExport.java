@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jme3.app.Application;
 import com.jme3.app.state.BaseAppState;
@@ -62,7 +63,8 @@ final class StExport extends BaseAppState {
 			SurfaceSettings surfaceSettings = getState(StUiSettings.class).surfaceSettings();
 
 			ObjectMapper mapper = new ObjectMapper();
-
+			mapper.enable(SerializationFeature.INDENT_OUTPUT);
+			
 			ObjectNode noiseJson = mapper.createObjectNode();
 			noiseSettings.toJson(noiseJson);
 
@@ -75,8 +77,10 @@ final class StExport extends BaseAppState {
 
 			try {
 				mapper.writeValue(f, root);
+				logger.debug("saved!");
 			} catch (IOException e) {
 				// FIXME replace with error log message and some popup
+				logger.error(e.getMessage(), e);
 				throw new RuntimeException(e);
 			}
 		});
@@ -84,7 +88,7 @@ final class StExport extends BaseAppState {
 
 	public void exportJ3o() {
 		fileChooser(FileType.J3O).ifPresent((File f) -> {
-			
+
 		});
 	}
 
