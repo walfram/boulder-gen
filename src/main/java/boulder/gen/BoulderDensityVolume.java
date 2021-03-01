@@ -10,10 +10,12 @@ final class BoulderDensityVolume implements DensityVolume {
 
 	private final Vector3f ext;
 	private final FastNoiseLite noise;
+	private final float noiseStrength;
 
-	public BoulderDensityVolume(Vector3f ext, FastNoiseLite noise) {
+	public BoulderDensityVolume(Vector3f ext, FastNoiseLite noise, float noiseStrength) {
 		this.ext = ext;
 		this.noise = noise;
+		this.noiseStrength = noiseStrength;
 	}
 
 	private float densityAt(Vector3f p) {
@@ -24,7 +26,7 @@ final class BoulderDensityVolume implements DensityVolume {
 		float e = FastMath.sqrt(x + y + z) - 1;
 
 		// TODO: move "2" to settings and constructor
-		e += 2 * noise.GetNoise(p.x, p.y, p.z);
+		e += noiseStrength * noise.GetNoise(p.x, p.y, p.z);
 		// e *= noise.GetNoise(p.x, p.y, p.z);
 
 		return -1 * e;

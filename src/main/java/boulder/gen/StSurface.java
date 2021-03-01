@@ -47,7 +47,7 @@ final class StSurface extends BaseAppState {
 		noiseSettings.setup(noise);
 
 		Vector3f ellipseExt = new Vector3f(surfaceSettings.ellipsex, surfaceSettings.ellipsey, surfaceSettings.ellipsez);
-		DensityVolume source = new BoulderDensityVolume(ellipseExt, noise);
+		DensityVolume source = new BoulderDensityVolume(ellipseExt, noise, surfaceSettings.noiseStrength);
 
 		float scale = 1f;
 

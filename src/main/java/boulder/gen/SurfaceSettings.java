@@ -14,6 +14,8 @@ public final class SurfaceSettings {
 	public float ellipsey = 10.0f;
 	public float ellipsez = 20.0f;
 
+	public float noiseStrength = 2f;
+
 	public void toJson(ObjectNode node) {
 		node.put("cellSize", cellSize);
 
@@ -24,6 +26,8 @@ public final class SurfaceSettings {
 		node.put("ellipsex", ellipsex);
 		node.put("ellipsey", ellipsey);
 		node.put("ellipsez", ellipsez);
+
+		node.put("noiseStrength", noiseStrength);
 	}
 
 }

@@ -62,6 +62,8 @@ final class StUiSettings extends BaseAppState {
 			props.addFloatField("ellipse y", surfaceSettings, "ellipsey", 1, 64, 0.5f);
 			props.addFloatField("ellipse z", surfaceSettings, "ellipsez", 1, 64, 0.5f);
 
+			props.addFloatField("noise strength", surfaceSettings, "noiseStrength", 0, 4, 0.125f);
+
 			content.addChild(props).setInsets(insets);
 		}
 
