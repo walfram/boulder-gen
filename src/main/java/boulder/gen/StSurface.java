@@ -19,6 +19,7 @@ import com.simsilica.mathd.Vec3i;
 import jme3.common.material.MtlShowNormals;
 import jme3.common.noise.FastNoiseLite;
 import jme3.common.noise.NoiseSettings;
+import jme3utilities.MySpatial;
 
 final class StSurface extends BaseAppState {
 
@@ -93,7 +94,8 @@ final class StSurface extends BaseAppState {
 			}
 		}
 
-		logger.debug("refreshed, scene bound = {}", scene.getWorldBound());
+		int vertices = MySpatial.countVertices(scene);
+		logger.debug("refreshed, vertices = {}, scene bound = {}", vertices, scene.getWorldBound());
 	}
 
 	@Override

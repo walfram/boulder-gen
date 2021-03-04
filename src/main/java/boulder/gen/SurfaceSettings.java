@@ -12,7 +12,7 @@ public final class SurfaceSettings {
 
 	public float ellipsex = 10.0f;
 	public float ellipsey = 10.0f;
-	public float ellipsez = 20.0f;
+	public float ellipsez = 10.0f;
 
 	public float noiseStrength = 2f;
 

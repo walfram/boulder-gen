@@ -25,11 +25,19 @@ final class BoulderDensityVolume implements DensityVolume {
 
 		float e = FastMath.sqrt(x + y + z) - 1;
 
-		// TODO: move "2" to settings and constructor
 		e += noiseStrength * noise.GetNoise(p.x, p.y, p.z);
+		// e += noise.GetNoise(p.x, p.y, p.z);
 		// e *= noise.GetNoise(p.x, p.y, p.z);
 
-		return -1 * e;
+		// for (int i = 0; i < 8; i++) {
+		// float m = FastMath.pow(2f, i);
+		// float f = 1f / m;
+		// e += f * noiseStrength * noise.GetNoise(m * p.x, m * p.y, m * p.z);
+		// }
+
+		e = -1f * e;
+
+		return e;
 	}
 
 	@Override
