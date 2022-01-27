@@ -21,6 +21,7 @@ import com.simsilica.lemur.style.ElementId;
 
 import jme3.common.noise.FastNoiseLite.FractalType;
 import jme3.common.noise.FastNoiseLite.NoiseType;
+import jme3.common.ui.UiCentered;
 import jme3.common.noise.NoiseSettings;
 
 final class StUiSettings extends BaseAppState {
